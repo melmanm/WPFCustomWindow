@@ -7,6 +7,10 @@
     <Application.Resources>
 
 
+            
+
+
+
         <Style x:Key="ThumbStyle" TargetType="Thumb">
             <Style.Resources>
             </Style.Resources>
@@ -48,11 +52,11 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" Name="CloseButtonGrid">
-                            <Path Name="SignPath" Data="M 8 8 L 17 17 M 8 17 L 17 8" StrokeThickness="2" Stroke="SkyBlue"/>
+                            <Path Name="SignPath" Data="M 13 8 L 22 17 M 13 17 L 22 8" StrokeThickness="2" Stroke="SkyBlue"/>
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger SourceName="CloseButtonGrid" Property="IsMouseOver" Value="True">
-                                <Setter TargetName="CloseButtonGrid" Property="Background" Value="LightGray"/>
+                                <Setter TargetName="CloseButtonGrid" Property="Background" Value="#FFDC5353"/>
                             </Trigger>
                             <Trigger  SourceName="CloseButtonGrid" Property="IsMouseOver" Value="False">
                                 <Setter TargetName="CloseButtonGrid" Property="Background" Value="Transparent"/>
@@ -70,10 +74,13 @@
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Template">
+
                 <Setter.Value>
+                    
+                    
                     <ControlTemplate TargetType="Button">
                         <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" Name="MinButtonGrid">
-                            <Path Data="M 8 17 L 17 17" StrokeThickness="2" Stroke="SkyBlue"/>
+                            <Path Data="M 13 17 L 22 17" StrokeThickness="2" Stroke="SkyBlue"/>
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger SourceName="MinButtonGrid" Property="IsMouseOver" Value="True">
@@ -93,11 +100,12 @@
             <Setter Property="BorderBrush" Value="Transparent"/>
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="BorderThickness" Value="0"/>
+        
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" Name="MaxButtonGrid">
-                            <Path  Data="M 8 8 L 8 17 L 17 17 L 17 8 L 7 8" StrokeThickness="2" Stroke="SkyBlue"/>
+                            <Path  Data="M 13 8 L 13 17 L 22 17 L 22 8 L 12 8" StrokeThickness="2" Stroke="SkyBlue"/>
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger SourceName="MaxButtonGrid" Property="IsMouseOver" Value="True">
@@ -120,14 +128,14 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" Name="MaxButtonGrid">
-                            <Path  Data="M 7 11 L 14 11 L 14 17 L 8 17 L 8 11 M 10 8 L 17 8 L 17 14 L 11 14 L 11 8 " StrokeThickness="2" Stroke="SkyBlue"/>
+                            <Path  Data="M 12 11 L 19 11 L 19 17 L 13 17 L 13 11 M 15 8 L 22 8 L 22 14 L 16 14 L 16 8 " StrokeThickness="2" Stroke="SkyBlue"/>
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger SourceName="MaxButtonGrid" Property="IsMouseOver" Value="True">
                                 <Setter TargetName="MaxButtonGrid" Property="Background" Value="LightGray"/>
                             </Trigger>
                             <Trigger  SourceName="MaxButtonGrid" Property="IsMouseOver" Value="False">
-                                <Setter TargetName="MaxButtonGrid" Property="Background" Value="Transparent"/>
+                            <Setter TargetName="MaxButtonGrid" Property="Background" Value="Transparent"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -140,45 +148,52 @@
         <Style x:Key="CustomMainWindow" 
 
            TargetType="{x:Type Window}">
+
+            
             <Setter Property="Foreground" 
 
                 Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}" />
-            <Setter Property="AllowsTransparency" Value="True"/>
             <Setter Property="WindowStyle" Value="None"/>
+            <Setter Property="Topmost" Value="True"/>
             <Setter Property="ResizeMode" Value="NoResize"/>
+            <Setter Property="AllowsTransparency" Value="True"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Window}">
-                        <Grid>
-                            <Grid Background="White">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="25"/>
-                                    <RowDefinition Height="*"/>
-                                    <RowDefinition Height="10"/>
-                                </Grid.RowDefinitions>
+                        <Border Name="CompensationBorder" BorderThickness="7">
+                            <Grid>
+                                <Grid Background="White">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="25"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="10"/>
+                                    </Grid.RowDefinitions>
 
-                                <ContentPresenter Grid.Row="1"/>
+                                    <ContentPresenter Grid.Row="1"/>
 
-                                <Grid Grid.Row="0"  Height="25"  HorizontalAlignment="Stretch" Name="TopBar" >
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="75"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid Background="Gray" Grid.Column="0" MouseDown="TopBar_MouseDown" MouseLeave="TopBar_MouseUp" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                                        <TextBlock Background="Transparent" Text="{TemplateBinding Title}" Foreground="LightGray" VerticalAlignment="Center"  HorizontalAlignment="Center" />
+                                    <Grid Grid.Row="0"  Height="25"  HorizontalAlignment="Stretch" Name="TopBar" >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="105"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid Background="Gray" Grid.Column="0" MouseDown="TopBar_MouseDown" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                            <TextBlock Background="Transparent" Text="{TemplateBinding Title}" Foreground="LightGray" VerticalAlignment="Center"  HorizontalAlignment="Center" />
+                                        </Grid>
+                                        <DockPanel VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Column="1"  Background="Gray" >
+                                            <Button  Height ="25" Width="35"  Style="{StaticResource MinimalizeButton}" Name = "ButtonMinimalize" Click="ButtonMinimalize_Click"/>
+                                            <Button  Height ="25" Width="35"  Name = "ButtonMiaximize" Click="ButtonMiaximize_Click"/>
+                                            <Button  Height ="25" Width="35"  Style="{StaticResource CloseButton}" Click="ButtonExit_Click"/>
+                                        </DockPanel>
                                     </Grid>
-                                    <DockPanel VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Column="1"  Background="Gray" >
-                                        <Button  Height ="25" Width="25"  Style="{StaticResource MinimalizeButton}" Name = "ButtonMinimalize" Click="ButtonMinimalize_Click"/>
-                                        <Button  Height ="25" Width="25"  Name = "ButtonMiaximize" Click="ButtonMiaximize_Click"/>
-                                        <Button  Height ="25" Width="25"  Style="{StaticResource CloseButton}" Click="ButtonExit_Click"/>
-                                    </DockPanel>
+
                                 </Grid>
+                                <Thumb  BorderBrush="Orange" Name="ThumbW" DragDelta="ThumbW_DragDelta" Cursor="SizeWE" VerticalAlignment="Stretch" HorizontalAlignment="Right" Grid.RowSpan="2" Grid.Row="0"/>
+                                <Thumb  BorderBrush="Orange" Name="ThumbE"  DragDelta="ThumbE_DragDelta" Cursor="SizeWE" VerticalAlignment="Stretch" HorizontalAlignment="Left" Grid.RowSpan="2" Grid.Row="0"/>
+                                <Thumb  BorderBrush="Orange" Name="ThumbS"  DragDelta="ThumbS_DragDelta" Cursor="SizeNS" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Grid.Row="2"/>
+                                <Thumb  BorderBrush="Orange" Name="ThumbN"  DragDelta="ThumbN_DragDelta" Cursor="SizeNS" HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.Row="0"/>
                             </Grid>
-                            <Thumb  BorderBrush="Orange" Name="ThumbW" DragDelta="ThumbW_DragDelta" Cursor="SizeWE" VerticalAlignment="Stretch" HorizontalAlignment="Right" Grid.RowSpan="2" Grid.Row="0"/>
-                            <Thumb  BorderBrush="Orange" Name="ThumbE"  DragDelta="ThumbE_DragDelta" Cursor="SizeWE" VerticalAlignment="Stretch" HorizontalAlignment="Left" Grid.RowSpan="2" Grid.Row="0"/>
-                            <Thumb  BorderBrush="Orange" Name="ThumbS"  DragDelta="ThumbS_DragDelta" Cursor="SizeNS" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Grid.Row="2"/>
-                            <Thumb  BorderBrush="Orange" Name="ThumbN"  DragDelta="ThumbN_DragDelta" Cursor="SizeNS" HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.Row="0"/>
-                        </Grid>
+                        </Border>
+                        
                         <ControlTemplate.Triggers>
                             <!--<EventTrigger  SourceName="ButtonMinimalize" RoutedEvent="Button.Click" >
                                 <EventTrigger.Actions>
@@ -195,6 +210,7 @@
                                 <Setter TargetName="ThumbE" Property="Style" Value="{StaticResource ThumbStyle}"/>
                                 <Setter TargetName="ThumbN" Property="Style" Value="{StaticResource ThumbStyle}"/>
                                 <Setter TargetName="ThumbS" Property="Style" Value="{StaticResource ThumbStyle}"/>
+                                <Setter TargetName="CompensationBorder" Property="BorderThickness" Value="0"/>
                                 <Trigger.EnterActions>
                                     <BeginStoryboard>
                                         <Storyboard>
@@ -207,12 +223,14 @@
                                 </Trigger.EnterActions>
                             </Trigger>
                             <Trigger  Property="WindowState" Value="Maximized">
+                                <Setter TargetName="CompensationBorder" Property="BorderThickness" Value="7"/>
                                 <Setter TargetName="ButtonMiaximize" Property="Style" Value="{StaticResource AlternativeMaximizeButton}"/>
                                 <Setter TargetName="ThumbW" Property="Style" Value="{StaticResource InvisibleThumbStyle}"/>
                                 <Setter TargetName="ThumbE" Property="Style" Value="{StaticResource InvisibleThumbStyle}"/>
                                 <Setter TargetName="ThumbN" Property="Style" Value="{StaticResource InvisibleThumbStyle}"/>
                                 <Setter TargetName="ThumbS" Property="Style" Value="{StaticResource InvisibleThumbStyle}"/>
                             </Trigger>
+                            
                         </ControlTemplate.Triggers>
 
 

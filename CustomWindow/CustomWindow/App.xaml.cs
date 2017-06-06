@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
@@ -23,6 +24,8 @@ namespace MainWIndowCustom
             {
                 CurrentWindow.Width += e.HorizontalChange;
             }
+            CurrentWindow.MaxHeight = SystemParameters.WorkArea.Height;
+            CurrentWindow.MaxWidth = SystemParameters.WorkArea.Width;
         }
 
         private void ThumbE_DragDelta(object sender, System.Windows.Controls.Primitives.DragDeltaEventArgs e)
@@ -68,43 +71,56 @@ namespace MainWIndowCustom
 
         private void ButtonMiaximize_Click(object sender, RoutedEventArgs e)
         {
-            var CurrentWindow = Window.GetWindow((DependencyObject)e.Source);
-            if (CurrentWindow.WindowState == WindowState.Normal)
-            {
-                CurrentWindow.MaxHeight = SystemParameters.WorkArea.Height;
+             var CurrentWindow = Window.GetWindow((DependencyObject)e.Source);
+             if (CurrentWindow.WindowState == WindowState.Normal)
+             {
+                var LastMaxHeight = CurrentWindow.MaxHeight;
+                var LastMaxWidth = CurrentWindow.MaxWidth;
+                System.Windows.Forms.Screen screen = System.Windows.Forms.Screen.FromPoint(new System.Drawing.Point((int)CurrentWindow.Left, (int)CurrentWindow.Top));
+                CurrentWindow.MaxHeight = screen.WorkingArea.Size.Height + 16;
+                CurrentWindow.MaxWidth = screen.WorkingArea.Size.Width + 16;
                 CurrentWindow.WindowState = WindowState.Maximized;
-            }
-            else if (CurrentWindow.WindowState == WindowState.Maximized)
-            {
-                CurrentWindow.WindowState = WindowState.Normal;
-            }
-        }
+                CurrentWindow.MaxHeight = LastMaxHeight;
+                CurrentWindow.MaxWidth = LastMaxWidth;
 
+            }
+             else if (CurrentWindow.WindowState == WindowState.Maximized)
+             {
+                 CurrentWindow.WindowState = WindowState.Normal;
+             }
+      
+    
+           
+        }
 
         private void TopBar_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             var CurrentWindow = Window.GetWindow((DependencyObject)e.Source);
-            if (CurrentWindow.WindowState == WindowState.Maximized)
+            /* (CurrentWindow.WindowState == WindowState.Maximized)
             {
                 CurrentWindow.Top = Mouse.GetPosition(CurrentWindow).Y;
                 CurrentWindow.WindowState = WindowState.Normal;
-            }
+            }*/
 
             CurrentWindow.DragMove();
         }
 
-        private void TopBar_MouseUp(object sender, MouseEventArgs e)
-        {
-            var CurrentWindow = Window.GetWindow((DependencyObject)e.Source);
-            if (CurrentWindow.WindowState == WindowState.Normal)
-            {
-                if (CurrentWindow.Top == 0)
-                {
-                    CurrentWindow.MaxHeight = SystemParameters.WorkArea.Height;
-                    CurrentWindow.WindowState = WindowState.Maximized;
-                }
-            }
 
-        }
+
+        /*   private void TopBar_MouseUp(object sender, MouseEventArgs e)
+             {
+                var CurrentWindow = Window.GetWindow((DependencyObject)e.Source);
+                 if (CurrentWindow.WindowState == WindowState.Normal)
+                 {
+                     if (CurrentWindow.Top == 0)
+                     {
+                         CurrentWindow.MaxHeight = SystemParameters.WorkArea.Height;
+                         CurrentWindow.WindowState = WindowState.Maximized;
+                     }
+                 }
+                 if (CurrentWindow.Top < 0) throw new Exception("dasdsa");
+                 CurrentWindow.Top = 0;
+                 CurrentWindow.MaxHeight = SystemParameters.WorkArea.Height;
+             }*/
     }
 }

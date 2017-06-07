@@ -7,7 +7,17 @@
        Topmost="False" 
      Style="{StaticResource CustomMainWindow}" Title="MyCustomWindow"  ResizeMode="CanResize" SnapsToDevicePixels="True"  WindowStartupLocation="CenterScreen"
         Width="550"
-        Height="550"
-        >
-
+        Height="400"
+        Icon="resources/icon.png">
+    <Grid Background="LightGray" >
+       
+        <StackPanel Margin="10,10,10,10">
+            <TextBlock Margin="0,5,0,5" Text="This is the Custom Window project released in C# WPF. It includes all functions of usual Windows Window, such as:" TextWrapping="Wrap"/>
+            <TextBlock Margin="0,5,0,5" Text="-Minimize, maximize and close buttons"/>
+            <TextBlock Margin="0,5,0,5" Text="-Resizing window vertically and horizontally using border drag"/>
+            <TextBlock Margin="0,5,0,5" Text="-Icon and title areas"/>
+            <TextBlock Margin="0,5,0,5" Text="-Title bar allows to drag the window"/>
+            <TextBlock Margin="0,5,0,5" Text="-Side and top dock"/>
+        </StackPanel>
+    </Grid>
 </Window>

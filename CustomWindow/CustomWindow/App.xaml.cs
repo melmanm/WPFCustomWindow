@@ -24,8 +24,6 @@ namespace MainWIndowCustom
             {
                 CurrentWindow.Width += e.HorizontalChange;
             }
-            CurrentWindow.MaxHeight = SystemParameters.WorkArea.Height;
-            CurrentWindow.MaxWidth = SystemParameters.WorkArea.Width;
         }
 
         private void ThumbE_DragDelta(object sender, System.Windows.Controls.Primitives.DragDeltaEventArgs e)
@@ -77,8 +75,8 @@ namespace MainWIndowCustom
                 var LastMaxHeight = CurrentWindow.MaxHeight;
                 var LastMaxWidth = CurrentWindow.MaxWidth;
                 System.Windows.Forms.Screen screen = System.Windows.Forms.Screen.FromPoint(new System.Drawing.Point((int)CurrentWindow.Left, (int)CurrentWindow.Top));
-                CurrentWindow.MaxHeight = screen.WorkingArea.Size.Height + 16;
-                CurrentWindow.MaxWidth = screen.WorkingArea.Size.Width + 16;
+                CurrentWindow.MaxHeight = screen.WorkingArea.Size.Height + 14;
+                CurrentWindow.MaxWidth = screen.WorkingArea.Size.Width + 14;
                 CurrentWindow.WindowState = WindowState.Maximized;
                 CurrentWindow.MaxHeight = LastMaxHeight;
                 CurrentWindow.MaxWidth = LastMaxWidth;
